@@ -1,11 +1,13 @@
-const KEY = "lift-and-live:onboarding";
+// src/lib/storage.ts
 
-export function saveOnboarding(data: unknown) {
-  localStorage.setItem(KEY, JSON.stringify(data));
+const ONBOARDING_KEY = "lift-and-live:onboarding";
+
+function saveJson(key: string, data: unknown) {
+  localStorage.setItem(key, JSON.stringify(data));
 }
 
-export function loadOnboarding<T>() {
-  const raw = localStorage.getItem(KEY);
+function loadJson<T>(key: string): T | null {
+  const raw = localStorage.getItem(key);
   if (!raw) return null;
   try {
     return JSON.parse(raw) as T;
@@ -14,6 +16,34 @@ export function loadOnboarding<T>() {
   }
 }
 
+function clearKey(key: string) {
+  localStorage.removeItem(key);
+}
+
+// --- Existing onboarding API (unchanged for callers) ---
+
+export function saveOnboarding(data: unknown) {
+  saveJson(ONBOARDING_KEY, data);
+}
+
+export function loadOnboarding<T>() {
+  return loadJson<T>(ONBOARDING_KEY);
+}
+
 export function clearOnboarding() {
-  localStorage.removeItem(KEY);
+  clearKey(ONBOARDING_KEY);
+}
+
+// --- New generic API (for plans, later history, etc.) ---
+
+export function saveToStorage(key: string, data: unknown) {
+  saveJson(key, data);
+}
+
+export function loadFromStorage<T>(key: string) {
+  return loadJson<T>(key);
+}
+
+export function clearStorageKey(key: string) {
+  clearKey(key);
 }
