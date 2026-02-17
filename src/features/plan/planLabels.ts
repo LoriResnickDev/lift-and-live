@@ -1,4 +1,11 @@
 import type { SessionType, Intensity } from "./types";
+import type { Experience } from "../onboarding/types";
+
+export const EXPERIENCE_LABEL: Record<Experience, string> = {
+  beginner: "Beginner",
+  intermediate: "Intermediate",
+  advanced: "Advanced",
+};
 
 export const SESSION_TYPE_LABEL: Record<SessionType, string> = {
   strength: "Strength",

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { loadProfile } from "../onboarding/profileStorage";
+import { PlanHeader } from "./PlanHeader";
 import { SESSION_TYPE_LABEL, INTENSITY_LABEL } from "./planLabels";
 import "./PlanPage.css";
 import { SessionCard } from "./SessionCard";
@@ -54,10 +55,6 @@ export default function PlanPage() {
   const plan = storedPlan.plan;
   const isPlanOutOfDate = !doesStoredPlanMatchProfile(storedPlan, profile);
 
-  function formatDate(iso: string) {
-    return new Date(iso).toLocaleString();
-  }
-
   function onRegenerate() {
     if (!profile) return;
     setIsRegenerating(true);
@@ -71,32 +68,13 @@ export default function PlanPage() {
 
   return (
     <div>
-      <h2>Your Plan</h2>
-
-      <p>
-        <em>
-          Generated: {formatDate(storedPlan.createdAt)} (generator {storedPlan.generatorVersion})
-        </em>
-      </p>
-
-      {isPlanOutOfDate && (
-        <div role="status" className="planNotice">
-          <div className="planNoticeTitle">Your profile settings have changed</div>
-          <div className="planNoticeBody">
-            This plan was generated using older onboarding settings. Regenerate to update it.
-          </div>
-        </div>
-      )}
-
-      <div className="planActions">
-        <button type="button" onClick={onRegenerate} disabled={isRegenerating || !profile}>
-          {isRegenerating
-            ? "Regenerating..."
-            : isPlanOutOfDate
-              ? "Regenerate (recommended)"
-              : "Regenerate plan"}
-        </button>
-      </div>
+      <PlanHeader
+        profile={profile}
+        storedPlan={storedPlan}
+        isPlanOutOfDate={isPlanOutOfDate}
+        isRegenerating={isRegenerating}
+        onRegenerate={onRegenerate}
+      />
 
       <details>
         <summary>Plan settings</summary>
@@ -119,7 +97,9 @@ export default function PlanPage() {
             <SessionCard
               key={`${session.dayOfWeek}-${session.sessionType}-${idx}`}
               dayOfWeek={session.dayOfWeek}
+              sessionType={session.sessionType}
               sessionTypeLabel={sessionTypeLabel}
+              intensity={session.intensity}
               intensityLabel={intensityLabel}
               durationMinutes={session.durationMinutes}
             />

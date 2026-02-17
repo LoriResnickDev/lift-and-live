@@ -29,10 +29,13 @@
 
 .sessionDay {
   font-weight: 700;
+  font-size: 16px;
+  margin-bottom: 4px;
 }
 
 .sessionDuration {
   white-space: nowrap;
+  opacity: 0.8;
 }
 
 .planNotice {
@@ -55,4 +58,71 @@
   gap: 8px;
   align-items: center;
   margin-bottom: 12px;
+}
+
+/* Intensity badge */
+.intensityBadge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid;
+  font-size: 12px;
+  line-height: 18px;
+  margin-left: 8px;
+}
+
+/* We keep colors simple and readable */
+.intensityLow {
+  background: #eaf7ea;
+}
+
+.intensityMedium {
+  background: #fff6db;
+}
+
+.intensityHigh {
+  background: #ffe3e3;
+}
+
+.sessionTypeChip {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid;
+  font-size: 12px;
+  line-height: 18px;
+  margin-right: 8px;
+}
+
+/* Optional subtle background variation per type */
+.sessionTypeStrength {
+  background: #e7f0ff;
+}
+
+.sessionTypeCardio {
+  background: #e8f7f0;
+}
+
+.sessionTypeMobility {
+  background: #f3e8ff;
+}
+
+.sessionTypeRecovery {
+  background: #f5f5f5;
+}
+
+.planSummary {
+  margin-top: 4px;
+  margin-bottom: 12px;
+  opacity: 0.85;
+}
+
+.planHeader {
+  margin-bottom: 16px;
+}
+
+.planMeta {
+  margin-top: 0;
+  margin-bottom: 12px;
+  opacity: 0.85;
 }
