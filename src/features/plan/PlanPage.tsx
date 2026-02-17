@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { loadProfile } from "../onboarding/profileStorage";
 import { SESSION_TYPE_LABEL, INTENSITY_LABEL } from "./planLabels";
+import "./PlanPage.css";
+import { SessionCard } from "./SessionCard";
 import {
   getOrCreateCurrentPlan,
   regenerateCurrentPlan,
@@ -78,23 +80,15 @@ export default function PlanPage() {
       </p>
 
       {isPlanOutOfDate && (
-        <div
-          role="status"
-          style={{
-            border: "1px solid",
-            padding: 12,
-            borderRadius: 8,
-            marginBottom: 12,
-          }}
-        >
-          <strong>Your profile settings have changed</strong>
-          <div style={{ marginTop: 4 }}>
+        <div role="status" className="planNotice">
+          <div className="planNoticeTitle">Your profile settings have changed</div>
+          <div className="planNoticeBody">
             This plan was generated using older onboarding settings. Regenerate to update it.
           </div>
         </div>
       )}
 
-      <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+      <div className="planActions">
         <button type="button" onClick={onRegenerate} disabled={isRegenerating || !profile}>
           {isRegenerating
             ? "Regenerating..."
@@ -116,16 +110,19 @@ export default function PlanPage() {
       </details>
 
       <h3>Weekly Plan</h3>
-      <ul>
+      <ul className="sessionsGrid">
         {plan.sessions.map((session, idx) => {
           const sessionTypeLabel = SESSION_TYPE_LABEL[session.sessionType];
           const intensityLabel = INTENSITY_LABEL[session.intensity];
 
           return (
-            <li key={`${session.dayOfWeek}-${session.sessionType}-${idx}`}>
-              <strong>{session.dayOfWeek}</strong>: {sessionTypeLabel} ({intensityLabel}) -{" "}
-              {session.durationMinutes} minutes
-            </li>
+            <SessionCard
+              key={`${session.dayOfWeek}-${session.sessionType}-${idx}`}
+              dayOfWeek={session.dayOfWeek}
+              sessionTypeLabel={sessionTypeLabel}
+              intensityLabel={intensityLabel}
+              durationMinutes={session.durationMinutes}
+            />
           );
         })}
       </ul>

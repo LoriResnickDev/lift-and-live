@@ -1,0 +1,58 @@
+/* src/features/plan/PlanPage.css */
+
+.sessionsGrid {
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 12px;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 700px) {
+  .sessionsGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.sessionCard {
+  list-style: none;
+  border: 1px solid;
+  border-radius: 12px;
+  padding: 12px;
+}
+
+.sessionCardInner {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.sessionDay {
+  font-weight: 700;
+}
+
+.sessionDuration {
+  white-space: nowrap;
+}
+
+.planNotice {
+  border: 1px solid;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.planNoticeTitle {
+  font-weight: 700;
+}
+
+.planNoticeBody {
+  margin-top: 4px;
+}
+
+.planActions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 12px;
+}
