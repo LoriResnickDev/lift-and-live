@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { OnboardingData, AgeRange, Experience } from "./types";
+import type { OnboardingData, AgeRange, Experience, DaysPerWeek } from "./types";
 import { clearOnboarding, loadOnboarding, saveOnboarding } from "../../lib/storage";
 
 const ageRanges: AgeRange[] = ["40-49", "50-59", "60-69", "70+"];
@@ -68,17 +68,23 @@ export default function OnboardingForm() {
         </select>
       </label>
 
-      <label>
-        Days per week (2–7)
-        <input
-          type="number"
-          min={2}
-          max={7}
-          value={data.daysPerWeek}
-          onChange={(e) => update("daysPerWeek", Number(e.target.value))}
-          style={{ display: "block", width: "100%" }}
-        />
-      </label>
+        <label>
+        Days per week
+        <select
+            value={data.daysPerWeek}
+            onChange={(e) =>
+            update("daysPerWeek", Number(e.target.value) as DaysPerWeek)
+            }
+            style={{ display: "block", width: "100%" }}
+        >
+            <option value={2}>2 days</option>
+            <option value={3}>3 days</option>
+            <option value={4}>4 days</option>
+            <option value={5}>5 days</option>
+            <option value={6}>6 days</option>
+            <option value={7}>7 days</option>
+        </select>
+        </label>
 
       <label>
         Minutes per session (10–90)

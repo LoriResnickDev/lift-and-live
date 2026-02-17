@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import { loadProfile } from "../onboarding/profileStorage";
+import { generateWeeklyPlan } from "./generateWeeklyPlan";
+import { SESSION_TYPE_LABEL, INTENSITY_LABEL } from "./planLabels";
 
 export default function PlanPage() {
   const result = loadProfile();
@@ -25,21 +27,31 @@ export default function PlanPage() {
   }
 
   // result.kind === "readyProfile"
+  const plan = generateWeeklyPlan(result.profile);
   return (
     <div>
       <h2>Your Plan</h2>
 
-      <p>Profile loaded successfully.</p>
+      <details>
+        <summary>Plan settings</summary>
+        <ul>
+          <li>Age range: {result.profile.ageRange}</li>
+          <li>Experience: {result.profile.experience}</li>
+          <li>Days per week: {result.profile.daysPerWeek}</li>
+          <li>Minutes per session: {result.profile.minutesPerSession}</li>
+        </ul>
+        <Link to="/onboarding">Edit onboarding</Link>
+      </details>
 
-      <h3>Profile details</h3>
+      <h3>Weekly Plan</h3>
       <ul>
-        <li>Age range: {result.profile.ageRange}</li>
-        <li>Experience: {result.profile.experience}</li>
-        <li>Days per week: {result.profile.daysPerWeek}</li>
-        <li>Minutes per session: {result.profile.minutesPerSession}</li>
+        {plan.sessions.map((session) => (
+          <li key={`${session.dayOfWeek}-${session.sessionType}`}>
+            <strong>{session.dayOfWeek}</strong>: {SESSION_TYPE_LABEL[session.sessionType]} (
+            {INTENSITY_LABEL[session.intensity]}) - {session.durationMinutes} minutes
+          </li>
+        ))}
       </ul>
-
-      <p>Plan generation coming next.</p>
     </div>
   );
 }
