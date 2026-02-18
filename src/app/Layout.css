@@ -1,0 +1,57 @@
+.appContainer {
+  padding: 32px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.appHeader {
+  margin-bottom: 20px;
+}
+
+.brandAndNav {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.brandLogo {
+  width: 100px;
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.navTabs {
+  /* margin-top: 12px; */
+  display: flex;
+  gap: 12px;
+}
+
+.navTab {
+  padding: 8px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #444;
+  border: 1px solid transparent;
+  font-size: 18px;
+  font-weight: 500;
+  transition: background 0.15s ease;
+}
+
+.navTab:hover {
+  background: #e6dbf6;
+}
+
+.navTabActive {
+  background: #361c5f;
+  color: white;
+}
+
+.navTabActive:hover {
+  background: #51338a;
+  color: white;
+}
+
+.appMain {
+  margin-top: 16px;
+}

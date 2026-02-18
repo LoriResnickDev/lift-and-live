@@ -1,18 +1,39 @@
-import { Link, Outlet } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
+import "./Layout.css";
 
 export default function Layout() {
   return (
-    <div style={{ padding: "2rem", maxWidth: 960, margin: "0 auto" }}>
-      <header style={{ marginBottom: "1.5rem" }}>
-        <h1 style={{ margin: 0 }}>Lift &amp; Live</h1>
-        <nav style={{ marginTop: "0.75rem", display: "flex", gap: "1rem" }}>
-          <Link to="/onboarding">Onboarding</Link>
-          <Link to="/plan">Plan</Link>
-          <Link to="/dashboard">Dashboard</Link>
-        </nav>
+    <div className="appContainer">
+      <header className="appHeader">
+        <div className="brandAndNav">
+          <img src="/liftAndLive-logo.png" alt="Lift & Live" className="brandLogo" />
+
+          <nav className="navTabs">
+            <NavLink
+              to="/onboarding"
+              className={({ isActive }) => (isActive ? "navTab navTabActive" : "navTab")}
+            >
+              Onboarding
+            </NavLink>
+
+            <NavLink
+              to="/plan"
+              className={({ isActive }) => (isActive ? "navTab navTabActive" : "navTab")}
+            >
+              Plan
+            </NavLink>
+
+            <NavLink
+              to="/dashboard"
+              className={({ isActive }) => (isActive ? "navTab navTabActive" : "navTab")}
+            >
+              Dashboard
+            </NavLink>
+          </nav>
+        </div>
       </header>
 
-      <main>
+      <main className="appMain">
         <Outlet />
       </main>
     </div>
