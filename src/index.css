@@ -1,0 +1,18 @@
+:root {
+  /* Brand colors */
+  --color-purple-primary: #361c5f;
+  --color-purple-primary-hover: #513389;
+  --color-purple-light: #e6dbf6;
+
+  /* Neutral colors */
+  --color-text-primary: #222;
+  --color-text-secondary: #444;
+  --color-text-muted: #777;
+
+  --color-border-light: #eee;
+  --color-border-medium: #ccc;
+
+  --color-background-page: #ffffff;
+  --color-background-card: #ffffff;
+  --color-background-subtle: #f7f7f7;
+}
