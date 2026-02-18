@@ -61,6 +61,7 @@
   padding: 12px;
   border-radius: 8px;
   margin-bottom: 12px;
+  background: var(--color-purple-light);
 }
 
 .planNoticeTitle {
@@ -129,20 +130,34 @@
   background: #f5f5f5;
 }
 
-.planSummary {
-  margin-top: 4px;
-  margin-bottom: 12px;
-  opacity: 0.85;
-}
-
 .planHeader {
-  margin-bottom: 16px;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
-.planMeta {
-  margin-top: 0;
-  margin-bottom: 12px;
-  opacity: 0.85;
+.planHeader h2 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.planSummary {
+  margin-top: 6px;
+  font-size: 16px;
+  color: var(--color-text-secondary);
+}
+
+.planGeneratedLine {
+  margin-top: 4px;
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+.planActions {
+  margin-top: 12px;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
 }
 
 .exerciseList {

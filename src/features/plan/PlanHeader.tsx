@@ -28,7 +28,7 @@ export function PlanHeader({
 
       <PlanSummary profile={profile} />
 
-      <p className="planMeta">
+      <p className="planGeneratedLine">
         <em>
           Generated: {formatDate(storedPlan.createdAt)} (generator {storedPlan.generatorVersion})
         </em>
@@ -44,7 +44,12 @@ export function PlanHeader({
       )}
 
       <div className="planActions">
-        <button type="button" onClick={onRegenerate} disabled={isRegenerating}>
+        <button
+          type="button"
+          className="buttonPrimary"
+          onClick={onRegenerate}
+          disabled={isRegenerating}
+        >
           {isRegenerating
             ? "Regenerating..."
             : isPlanOutOfDate

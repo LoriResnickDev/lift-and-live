@@ -16,3 +16,37 @@
   --color-background-card: #ffffff;
   --color-background-subtle: #f7f7f7;
 }
+
+.buttonPrimary {
+  background: var(--color-purple-primary);
+  color: white;
+
+  border: none;
+  border-radius: 8px;
+
+  padding: 8px 16px;
+
+  font-size: 15px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  transition:
+    background 0.15s ease,
+    transform 0.05s ease,
+    box-shadow 0.15s ease;
+}
+
+.buttonPrimary:hover {
+  background: var(--color-purple-primary-hover);
+}
+
+.buttonPrimary:active {
+  transform: translateY(1px);
+  box-shadow: none;
+}
+
+.buttonPrimary:disabled {
+  background: #ccc;
+  cursor: default;
+}
