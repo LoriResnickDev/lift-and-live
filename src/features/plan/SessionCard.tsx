@@ -1,4 +1,6 @@
 import "./PlanPage.css";
+import type { ExerciseId } from "./exercises/catalog";
+import { EXERCISES } from "./exercises/catalog";
 
 type SessionCardProps = {
   dayOfWeek: string;
@@ -7,6 +9,7 @@ type SessionCardProps = {
   intensity: "low" | "medium" | "high";
   intensityLabel: string;
   durationMinutes: number;
+  exercises: ExerciseId[];
 };
 
 export function SessionCard({
@@ -16,6 +19,7 @@ export function SessionCard({
   intensity,
   intensityLabel,
   durationMinutes,
+  exercises,
 }: SessionCardProps) {
   const intensityClass =
     intensity === "low"
@@ -37,18 +41,25 @@ export function SessionCard({
       <div className="sessionCardInner">
         <div>
           <div className="sessionDay">{dayOfWeek}</div>
-          {/* <div>
-            {sessionTypeLabel}{" "}
-            <span className={`intensityBadge ${intensityClass}`}>{intensityLabel}</span>
-          </div> */}
           <div>
             <span className={`sessionTypeChip ${sessionTypeClass}`}>{sessionTypeLabel}</span>
-
             <span className={`intensityBadge ${intensityClass}`}>{intensityLabel}</span>
           </div>
         </div>
 
         <div className="sessionDuration">{durationMinutes} min</div>
+      </div>
+
+      <div className="exerciseSection">
+        <div className="exerciseSectionLabel">Exercises</div>
+
+        <div className="exerciseChips">
+          {exercises.map((id) => (
+            <span key={id} className="exerciseChip">
+              {EXERCISES[id].name}
+            </span>
+          ))}
+        </div>
       </div>
     </li>
   );

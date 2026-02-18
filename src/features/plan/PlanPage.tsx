@@ -102,6 +102,7 @@ export default function PlanPage() {
               intensity={session.intensity}
               intensityLabel={intensityLabel}
               durationMinutes={session.durationMinutes}
+              exercises={session.exercises}
             />
           );
         })}
