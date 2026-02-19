@@ -102,8 +102,10 @@ export default function ProfileForm() {
       </label>
 
       <div style={{ display: "flex", gap: "0.75rem" }}>
-        <button type="submit">Save</button>
-        <button type="button" onClick={onReset}>
+        <button className="buttonSecondary" type="submit">
+          Save
+        </button>
+        <button className="buttonSecondary" type="button" onClick={onReset}>
           Reset
         </button>
       </div>
@@ -119,11 +121,6 @@ export default function ProfileForm() {
           </div>
         </div>
       )}
-
-      <details>
-        <summary>Debug</summary>
-        <pre>{JSON.stringify(data, null, 2)}</pre>
-      </details>
     </form>
   );
 }

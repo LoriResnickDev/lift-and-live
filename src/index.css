@@ -3,6 +3,8 @@
   --color-purple-primary: #361c5f;
   --color-purple-primary-hover: #513389;
   --color-purple-light: #e6dbf6;
+  --color-purple-secondary: #e6dbf6;
+  --color-purple-secondary-hover: #d6c7f0;
 
   /* Neutral colors */
   --color-text-primary: #222;
@@ -52,19 +54,23 @@
 }
 
 .buttonSecondary {
-  background: transparent;
+  background: var(--color-purple-secondary);
   color: var(--color-purple-primary);
-  border: 1px solid var(--color-purple-primary);
+
+  border: 1px solid var(--color-purple-secondary);
   border-radius: 6px;
 
-  padding: 3px 10px; /* reduced from ~8px 14px */
-  font-size: 14px; /* slightly smaller */
+  padding: 3px 10px;
+  font-size: 14px;
   font-weight: 500;
 
   cursor: pointer;
-  transition: background 0.15s ease;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease;
 }
 
 .buttonSecondary:hover {
-  background: var(--color-purple-light);
+  background: var(--color-purple-secondary-hover);
+  border-color: var(--color-purple-secondary-hover);
 }
