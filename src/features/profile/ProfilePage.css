@@ -25,10 +25,30 @@
   padding: 0 16px;
 }
 
+/* For a real application, use a more advanced solution to make this more responsive */
 .profileContent {
   max-width: 600px;
   margin-left: 320px;
   text-align: left;
+}
+
+@media (max-width: 1040px) {
+  .profileContent {
+    margin-left: 240px;
+  }
+}
+
+@media (max-width: 768px) {
+  .profileContent {
+    margin-left: 140px;
+  }
+}
+
+@media (max-width: 480px) {
+  .profileContent {
+    margin-left: 0;
+    max-width: 100%;
+  }
 }
 
 /* Form field styling */
