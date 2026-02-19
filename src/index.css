@@ -50,3 +50,21 @@
   background: #ccc;
   cursor: default;
 }
+
+.buttonSecondary {
+  background: transparent;
+  color: var(--color-purple-primary);
+  border: 1px solid var(--color-purple-primary);
+  border-radius: 6px;
+
+  padding: 3px 10px; /* reduced from ~8px 14px */
+  font-size: 14px; /* slightly smaller */
+  font-weight: 500;
+
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.buttonSecondary:hover {
+  background: var(--color-purple-light);
+}

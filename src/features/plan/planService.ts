@@ -68,3 +68,21 @@ export function regenerateCurrentPlan(profile: OnboardingData): StoredPlan {
 export function doesStoredPlanMatchProfile(stored: StoredPlan, profile: OnboardingData): boolean {
   return stored.profileFingerprint === fingerprintProfile(profile);
 }
+
+export function saveCurrentPlanForProfile(profile: OnboardingData): StoredPlan {
+  const plan: WeeklyPlan = generateWeeklyPlan(profile);
+  const currentFingerprint = fingerprintProfile(profile); // keep for metadata (optional)
+  savePlan(plan, currentFingerprint, "v1");
+
+  const stored = loadPlan();
+  if (!stored) {
+    return {
+      plan,
+      createdAt: new Date().toISOString(),
+      generatorVersion: "v1",
+      profileFingerprint: currentFingerprint,
+    };
+  }
+
+  return stored;
+}

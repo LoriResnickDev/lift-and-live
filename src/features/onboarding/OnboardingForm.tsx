@@ -1,6 +1,9 @@
 import { useState } from "react";
 import type { OnboardingData, AgeRange, Experience, DaysPerWeek } from "./types";
 import { clearOnboarding, loadOnboarding, saveOnboarding } from "../../lib/storage";
+import { saveCurrentPlanForProfile } from "../plan/planService";
+import { useNavigate } from "react-router-dom";
+import "./OnboardingPage.css";
 
 const ageRanges: AgeRange[] = ["40-49", "50-59", "60-69", "70+"];
 const experiences: Experience[] = ["beginner", "intermediate", "advanced"];
@@ -18,6 +21,7 @@ export default function OnboardingForm() {
     return saved ?? defaultData;
   });
   const [status, setStatus] = useState<"idle" | "saved">("idle");
+  const navigate = useNavigate();
 
   function update<K extends keyof OnboardingData>(key: K, value: OnboardingData[K]) {
     setStatus("idle");
@@ -27,6 +31,7 @@ export default function OnboardingForm() {
   function onSubmit(e: React.SyntheticEvent<HTMLFormElement>) {
     e.preventDefault();
     saveOnboarding(data);
+    saveCurrentPlanForProfile(data);
     setStatus("saved");
   }
 
@@ -36,7 +41,7 @@ export default function OnboardingForm() {
     setStatus("idle");
   }
 
-    return (
+  return (
     <form onSubmit={onSubmit} style={{ display: "grid", gap: "1rem", maxWidth: 520 }}>
       <label>
         Age range
@@ -68,23 +73,21 @@ export default function OnboardingForm() {
         </select>
       </label>
 
-        <label>
+      <label>
         Days per week
         <select
-            value={data.daysPerWeek}
-            onChange={(e) =>
-            update("daysPerWeek", Number(e.target.value) as DaysPerWeek)
-            }
-            style={{ display: "block", width: "100%" }}
+          value={data.daysPerWeek}
+          onChange={(e) => update("daysPerWeek", Number(e.target.value) as DaysPerWeek)}
+          style={{ display: "block", width: "100%" }}
         >
-            <option value={2}>2 days</option>
-            <option value={3}>3 days</option>
-            <option value={4}>4 days</option>
-            <option value={5}>5 days</option>
-            <option value={6}>6 days</option>
-            <option value={7}>7 days</option>
+          <option value={2}>2 days</option>
+          <option value={3}>3 days</option>
+          <option value={4}>4 days</option>
+          <option value={5}>5 days</option>
+          <option value={6}>6 days</option>
+          <option value={7}>7 days</option>
         </select>
-        </label>
+      </label>
 
       <label>
         Minutes per session (10–90)
@@ -105,7 +108,17 @@ export default function OnboardingForm() {
         </button>
       </div>
 
-      {status === "saved" && <div>Saved ✅</div>}
+      {status === "saved" && (
+        <div className="saveSuccessBlock">
+          <div className="savedMessage">Saved ✅</div>
+          <div className="nextStepRow">
+            <span className="nextStepLabel">Next step:</span>
+            <button className="buttonPrimary" onClick={() => navigate("/plan")}>
+              See your plan
+            </button>
+          </div>
+        </div>
+      )}
 
       <details>
         <summary>Debug</summary>

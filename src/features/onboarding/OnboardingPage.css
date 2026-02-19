@@ -1,0 +1,20 @@
+.saveSuccessBlock {
+  margin-top: 12px;
+}
+
+.savedMessage {
+  font-weight: 500;
+  color: #2e7d32;
+}
+
+.nextStepRow {
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nextStepLabel {
+  font-size: 15px;
+  color: var(--color-text-secondary);
+}

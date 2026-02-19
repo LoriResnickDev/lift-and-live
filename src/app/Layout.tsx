@@ -14,7 +14,7 @@ export default function Layout() {
             to="/onboarding"
             className={({ isActive }) => (isActive ? "navTab navTabActive" : "navTab")}
           >
-            Onboarding
+            Profile
           </NavLink>
 
           <NavLink
