@@ -1,4 +1,4 @@
-import type { OnboardingData } from "../onboarding/types";
+import type { OnboardingData } from "../profile/types";
 import { EXPERIENCE_LABEL } from "./planLabels";
 import "./PlanPage.css";
 

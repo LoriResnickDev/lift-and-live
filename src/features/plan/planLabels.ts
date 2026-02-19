@@ -1,5 +1,5 @@
 import type { SessionType, Intensity } from "./types";
-import type { Experience } from "../onboarding/types";
+import type { Experience } from "../profile/types";
 
 export const EXPERIENCE_LABEL: Record<Experience, string> = {
   beginner: "Beginner",

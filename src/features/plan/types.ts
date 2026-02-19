@@ -1,4 +1,4 @@
-import type { OnboardingData } from "../onboarding/types";
+import type { OnboardingData } from "../profile/types";
 import type { ExerciseId } from "./exercises/catalog";
 export type SessionType = "strength" | "cardio" | "mobility" | "recovery";
 export type Intensity = "low" | "medium" | "high";

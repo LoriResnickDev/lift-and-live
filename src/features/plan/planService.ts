@@ -1,5 +1,5 @@
 // src/features/plan/planService.ts
-import type { OnboardingData } from "../onboarding/types";
+import type { OnboardingData } from "../profile/types";
 import type { WeeklyPlan } from "./types";
 import { generateWeeklyPlan } from "./generateWeeklyPlan";
 import { loadPlan, savePlan, type StoredPlan } from "./planStorage";

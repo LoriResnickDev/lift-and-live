@@ -11,7 +11,7 @@ export default function Layout() {
 
         <nav className="navTabs navTabsCentered">
           <NavLink
-            to="/onboarding"
+            to="/profile"
             className={({ isActive }) => (isActive ? "navTab navTabActive" : "navTab")}
           >
             Profile

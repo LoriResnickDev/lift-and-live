@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
-import { loadProfile } from "../onboarding/profileStorage";
+import { loadProfile } from "../profile/profileStorage";
 import { PlanHeader } from "./PlanHeader";
 import { SESSION_TYPE_LABEL, INTENSITY_LABEL } from "./planLabels";
 import "./PlanPage.css";
 import { SessionCard } from "./SessionCard";
 import { getOrCreateCurrentPlan } from "./planService";
-import type { OnboardingData } from "../onboarding/types";
+import type { OnboardingData } from "../profile/types";
 
 export default function PlanPage() {
   const result = loadProfile();
@@ -19,8 +19,8 @@ export default function PlanPage() {
     return (
       <div>
         <h2>Your Plan</h2>
-        <p>You haven’t completed onboarding yet.</p>
-        <Link to="/onboarding">Go to onboarding</Link>
+        <p>You haven't completed your profile yet.</p>
+        <Link to="/profile">Go to profile</Link>
       </div>
     );
   }
@@ -30,7 +30,7 @@ export default function PlanPage() {
       <div>
         <h2>Your Plan</h2>
         <p>Your profile data is invalid: {result.reason}</p>
-        <Link to="/onboarding">Redo onboarding</Link>
+        <Link to="/profile">Redo profile</Link>
       </div>
     );
   }

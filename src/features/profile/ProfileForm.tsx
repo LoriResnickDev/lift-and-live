@@ -3,7 +3,7 @@ import type { OnboardingData, AgeRange, Experience, DaysPerWeek } from "./types"
 import { clearOnboarding, loadOnboarding, saveOnboarding } from "../../lib/storage";
 import { saveCurrentPlanForProfile } from "../plan/planService";
 import { useNavigate } from "react-router-dom";
-import "./OnboardingPage.css";
+import "./ProfilePage.css";
 
 const ageRanges: AgeRange[] = ["40-49", "50-59", "60-69", "70+"];
 const experiences: Experience[] = ["beginner", "intermediate", "advanced"];
@@ -15,7 +15,7 @@ const defaultData: OnboardingData = {
   minutesPerSession: 30,
 };
 
-export default function OnboardingForm() {
+export default function ProfileForm() {
   const [data, setData] = useState<OnboardingData>(() => {
     const saved = loadOnboarding<OnboardingData>();
     return saved ?? defaultData;

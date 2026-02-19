@@ -1,4 +1,4 @@
-import type { Experience, DaysPerWeek, OnboardingData } from "../onboarding/types";
+import type { Experience, DaysPerWeek, OnboardingData } from "../profile/types";
 import type { Intensity, DayOfWeek, PlannedSession, SessionType, WeeklyPlan } from "./types";
 import type { ExerciseId } from "./exercises/catalog";
 
