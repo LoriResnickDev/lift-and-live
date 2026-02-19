@@ -1,11 +1,11 @@
 // src/features/plan/planService.ts
-import type { OnboardingData } from "../profile/types";
+import type { ProfileData } from "../profile/types";
 import type { WeeklyPlan } from "./types";
 import { generateWeeklyPlan } from "./generateWeeklyPlan";
 import { loadPlan, savePlan, type StoredPlan } from "./planStorage";
 
 // Deterministic fingerprint of profile settings
-function fingerprintProfile(profile: OnboardingData): string {
+function fingerprintProfile(profile: ProfileData): string {
   return JSON.stringify({
     ageRange: profile.ageRange,
     experience: profile.experience,
@@ -18,7 +18,7 @@ export type GetOrCreatePlanResult =
   | { kind: "loaded"; stored: StoredPlan }
   | { kind: "generated"; stored: StoredPlan };
 
-export function getOrCreateCurrentPlan(profile: OnboardingData): GetOrCreatePlanResult {
+export function getOrCreateCurrentPlan(profile: ProfileData): GetOrCreatePlanResult {
   const existing = loadPlan();
   const currentFingerprint = fingerprintProfile(profile);
   if (existing) {
@@ -47,7 +47,7 @@ export function getOrCreateCurrentPlan(profile: OnboardingData): GetOrCreatePlan
   return { kind: "generated", stored };
 }
 
-export function regenerateCurrentPlan(profile: OnboardingData): StoredPlan {
+export function regenerateCurrentPlan(profile: ProfileData): StoredPlan {
   const plan: WeeklyPlan = generateWeeklyPlan(profile);
   const currentFingerprint = fingerprintProfile(profile);
   savePlan(plan, currentFingerprint, "v1");
@@ -65,11 +65,11 @@ export function regenerateCurrentPlan(profile: OnboardingData): StoredPlan {
   return stored;
 }
 
-export function doesStoredPlanMatchProfile(stored: StoredPlan, profile: OnboardingData): boolean {
+export function doesStoredPlanMatchProfile(stored: StoredPlan, profile: ProfileData): boolean {
   return stored.profileFingerprint === fingerprintProfile(profile);
 }
 
-export function saveCurrentPlanForProfile(profile: OnboardingData): StoredPlan {
+export function saveCurrentPlanForProfile(profile: ProfileData): StoredPlan {
   const plan: WeeklyPlan = generateWeeklyPlan(profile);
   const currentFingerprint = fingerprintProfile(profile); // keep for metadata (optional)
   savePlan(plan, currentFingerprint, "v1");

@@ -5,9 +5,9 @@ import type {
   InvalidProfileState,
   ReadyProfileState,
 } from "../plan/types";
-import type { OnboardingData } from "./types";
+import type { ProfileData } from "./types";
 
-function isOnboardingData(value: unknown): value is OnboardingData {
+function isProfileData(value: unknown): value is ProfileData {
   if (typeof value !== "object" || value === null) {
     return false;
   }
@@ -33,7 +33,7 @@ export function loadProfile(): ProfileLoadResult {
         const result: MissingProfileState = { kind: "missingProfile" };
         return result;
     }
-    if (!isOnboardingData(raw)) {
+    if (!isProfileData(raw)) {
         const result: InvalidProfileState = { 
             kind: "invalidProfile", 
             reason: "Profile data is incomplete or malformed, or out of allowed range.", 

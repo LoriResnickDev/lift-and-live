@@ -1,6 +1,6 @@
 import { useState } from "react";
-import type { OnboardingData, AgeRange, Experience, DaysPerWeek } from "./types";
-import { clearOnboarding, loadOnboarding, saveOnboarding } from "../../lib/storage";
+import type { ProfileData, AgeRange, Experience, DaysPerWeek } from "./types";
+import { saveProfile, loadProfile, clearProfile } from "../../lib/storage";
 import { saveCurrentPlanForProfile } from "../plan/planService";
 import { useNavigate } from "react-router-dom";
 import "./ProfilePage.css";
@@ -8,7 +8,7 @@ import "./ProfilePage.css";
 const ageRanges: AgeRange[] = ["40-49", "50-59", "60-69", "70+"];
 const experiences: Experience[] = ["beginner", "intermediate", "advanced"];
 
-const defaultData: OnboardingData = {
+const defaultData: ProfileData = {
   ageRange: "50-59",
   experience: "beginner",
   daysPerWeek: 3,
@@ -16,27 +16,27 @@ const defaultData: OnboardingData = {
 };
 
 export default function ProfileForm() {
-  const [data, setData] = useState<OnboardingData>(() => {
-    const saved = loadOnboarding<OnboardingData>();
+  const [data, setData] = useState<ProfileData>(() => {
+    const saved = loadProfile<ProfileData>();
     return saved ?? defaultData;
   });
   const [status, setStatus] = useState<"idle" | "saved">("idle");
   const navigate = useNavigate();
 
-  function update<K extends keyof OnboardingData>(key: K, value: OnboardingData[K]) {
+  function update<K extends keyof ProfileData>(key: K, value: ProfileData[K]) {
     setStatus("idle");
     setData((prev) => ({ ...prev, [key]: value }));
   }
 
   function onSubmit(e: React.SyntheticEvent<HTMLFormElement>) {
     e.preventDefault();
-    saveOnboarding(data);
+    saveProfile(data);
     saveCurrentPlanForProfile(data);
     setStatus("saved");
   }
 
   function onReset() {
-    clearOnboarding();
+    clearProfile();
     setData(defaultData);
     setStatus("idle");
   }

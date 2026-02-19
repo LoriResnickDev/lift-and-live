@@ -1,4 +1,4 @@
-import type { Experience, DaysPerWeek, OnboardingData } from "../profile/types";
+import type { Experience, DaysPerWeek, ProfileData } from "../profile/types";
 import type { Intensity, DayOfWeek, PlannedSession, SessionType, WeeklyPlan } from "./types";
 import type { ExerciseId } from "./exercises/catalog";
 
@@ -103,7 +103,7 @@ const SESSION_MIX: Record<DaysPerWeek, SessionType[]> = {
   7: ["strength", "mobility", "cardio", "strength", "mobility", "cardio", "recovery"],
 };
 
-export function generateWeeklyPlan(profile: OnboardingData): WeeklyPlan {
+export function generateWeeklyPlan(profile: ProfileData): WeeklyPlan {
   const daysPerWeek = profile.daysPerWeek; // 3
   const experience = profile.experience; // "beginner"
   const days = DAY_PATTERNS[daysPerWeek]!; // ["Monday", "Wednesday", "Friday"]

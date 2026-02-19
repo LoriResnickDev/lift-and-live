@@ -1,9 +1,9 @@
-import type { OnboardingData } from "../profile/types";
+import type { ProfileData } from "../profile/types";
 import { EXPERIENCE_LABEL } from "./planLabels";
 import "./PlanPage.css";
 
 type PlanSummaryProps = {
-  profile: OnboardingData;
+  profile: ProfileData;
 };
 
 export function PlanSummary({ profile }: PlanSummaryProps) {

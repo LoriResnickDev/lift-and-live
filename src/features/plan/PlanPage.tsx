@@ -5,13 +5,13 @@ import { SESSION_TYPE_LABEL, INTENSITY_LABEL } from "./planLabels";
 import "./PlanPage.css";
 import { SessionCard } from "./SessionCard";
 import { getOrCreateCurrentPlan } from "./planService";
-import type { OnboardingData } from "../profile/types";
+import type { ProfileData } from "../profile/types";
 
 export default function PlanPage() {
   const result = loadProfile();
 
   // Extract a typed profile (or null) up front
-  const profile: OnboardingData | null = result.kind === "readyProfile" ? result.profile : null;
+  const profile: ProfileData | null = result.kind === "readyProfile" ? result.profile : null;
 
   const storedPlan = profile ? getOrCreateCurrentPlan(profile).stored : null;
 

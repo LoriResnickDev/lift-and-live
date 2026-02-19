@@ -1,5 +1,6 @@
 // src/lib/storage.ts
 
+const PROFILE_KEY = "lift-and-live:profile";
 const ONBOARDING_KEY = "lift-and-live:onboarding";
 
 function saveJson(key: string, data: unknown) {
@@ -20,18 +21,48 @@ function clearKey(key: string) {
   localStorage.removeItem(key);
 }
 
-// --- Existing onboarding API (unchanged for callers) ---
+// --- Profile API ---
+
+export function saveProfile(data: unknown) {
+  saveJson(PROFILE_KEY, data);
+}
+
+export function loadProfile<T>() {
+  // First try the new profile key
+  const profileData = loadJson<T>(PROFILE_KEY);
+  if (profileData !== null) {
+    return profileData;
+  }
+  
+  // If no profile data, try migrating from old onboarding key
+  const onboardingData = loadJson<T>(ONBOARDING_KEY);
+  if (onboardingData !== null) {
+    // Migrate data to new key
+    saveJson(PROFILE_KEY, onboardingData);
+    // Clear old key
+    clearKey(ONBOARDING_KEY);
+    return onboardingData;
+  }
+  
+  return null;
+}
+
+export function clearProfile() {
+  clearKey(PROFILE_KEY);
+}
+
+// --- Legacy onboarding API (deprecated) ---
 
 export function saveOnboarding(data: unknown) {
-  saveJson(ONBOARDING_KEY, data);
+  saveProfile(data); // Redirect to new API
 }
 
 export function loadOnboarding<T>() {
-  return loadJson<T>(ONBOARDING_KEY);
+  return loadProfile<T>(); // Redirect to new API
 }
 
 export function clearOnboarding() {
-  clearKey(ONBOARDING_KEY);
+  clearProfile(); // Redirect to new API
 }
 
 // --- New generic API (for plans, later history, etc.) ---

@@ -1,4 +1,4 @@
-import type { OnboardingData } from "../profile/types";
+import type { ProfileData } from "../profile/types";
 import type { ExerciseId } from "./exercises/catalog";
 export type SessionType = "strength" | "cardio" | "mobility" | "recovery";
 export type Intensity = "low" | "medium" | "high";
@@ -35,12 +35,12 @@ export type InvalidProfileState = {
 
 export type ReadyProfileState = {
   kind: "readyProfile";
-  profile: OnboardingData;
+  profile: ProfileData;
 };
 
 export type ReadyState = {
   kind: "ready";
-  profile: OnboardingData;
+  profile: ProfileData;
   plan: WeeklyPlan;
 };
 

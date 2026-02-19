@@ -1,10 +1,10 @@
-import type { OnboardingData } from "../profile/types";
+import type { ProfileData } from "../profile/types";
 import { PlanSummary } from "./PlanSummary";
 import "./PlanPage.css";
 import { useNavigate } from "react-router-dom";
 
 type PlanHeaderProps = {
-  profile: OnboardingData;
+  profile: ProfileData;
 };
 
 export function PlanHeader({ profile }: PlanHeaderProps) {
