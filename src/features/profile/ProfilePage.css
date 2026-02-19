@@ -18,3 +18,28 @@
   font-size: 15px;
   color: var(--color-text-secondary);
 }
+
+/* Profile page layout */
+.profilePageContainer {
+  width: 100%;
+  padding: 0 16px;
+}
+
+.profileContent {
+  max-width: 600px;
+  margin-left: 320px;
+  text-align: left;
+}
+
+/* Form field styling */
+.formField {
+  display: block;
+  width: 280px;
+  max-width: 100%;
+}
+
+@media (max-width: 480px) {
+  .formField {
+    width: 100%;
+  }
+}

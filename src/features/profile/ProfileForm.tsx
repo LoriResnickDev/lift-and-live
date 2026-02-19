@@ -48,7 +48,7 @@ export default function ProfileForm() {
         <select
           value={data.ageRange}
           onChange={(e) => update("ageRange", e.target.value as AgeRange)}
-          style={{ display: "block", width: "100%" }}
+          className="formField"
         >
           {ageRanges.map((v) => (
             <option key={v} value={v}>
@@ -63,7 +63,7 @@ export default function ProfileForm() {
         <select
           value={data.experience}
           onChange={(e) => update("experience", e.target.value as Experience)}
-          style={{ display: "block", width: "100%" }}
+          className="formField"
         >
           {experiences.map((v) => (
             <option key={v} value={v}>
@@ -78,7 +78,7 @@ export default function ProfileForm() {
         <select
           value={data.daysPerWeek}
           onChange={(e) => update("daysPerWeek", Number(e.target.value) as DaysPerWeek)}
-          style={{ display: "block", width: "100%" }}
+          className="formField"
         >
           <option value={2}>2 days</option>
           <option value={3}>3 days</option>
@@ -97,7 +97,7 @@ export default function ProfileForm() {
           max={90}
           value={data.minutesPerSession}
           onChange={(e) => update("minutesPerSession", Number(e.target.value))}
-          style={{ display: "block", width: "100%" }}
+          className="formField"
         />
       </label>
 
