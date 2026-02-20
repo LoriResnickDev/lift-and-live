@@ -14,11 +14,11 @@ Currently frontend-only with LocalStorage persistence. Backend integration and p
 
 ## Profile Page
 
-![Profile Page](docs/profile.png)
+![Profile Page](docs/profile-page.png)
 
 ## Plan Page
 
-![Plan Page](docs/plan.png)
+![Plan Page](docs/plan-page.png)
 
 ---
 
