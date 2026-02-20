@@ -8,6 +8,14 @@ This project serves both as a real product in development and a portfolio projec
 
 Currently frontend-only with LocalStorage persistence. Backend integration and progress tracking are planned next steps.
 
+## Status
+
+This project is actively under development.
+
+The current version demonstrates the core architecture, profile management, and plan generation logic using a frontend-only implementation with LocalStorage persistence.
+
+Backend integration, progress tracking, and additional features are planned as part of the roadmap.
+
 ---
 
 # Screenshots
